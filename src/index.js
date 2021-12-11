@@ -12,10 +12,11 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create the rootSaga generator function
-// watchers- smae as the index
+// watchers- same as the index
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', getAllGenres);
+    yield takeEvery('FETCH_NEWMOVIE', fetchNewMovie);
 }
 
 
@@ -31,6 +32,18 @@ function* fetchAllMovies() {
         console.log('get all error');
     }
         
+}
+
+function* fetchNewMovie(action){
+    console.log('add new movie action:', action.payload);
+    try {
+        const movies = yield axios.post(`/api/movie/`, { title: action.payload.title, poster: action.payload.poster, description: action.payload.description, genre_id: action.payload.genre });
+        console.log('get all:', movies.data);
+        yield put({ type: 'ADD_MOVIE', payload: movies.data });
+
+    } catch {
+        console.log('new post error');
+    }
 }
 
 function* getAllGenres(action){
@@ -78,12 +91,21 @@ const movieDetails = (state ={}, action)=>{
     }
 }
 
+const newMovie = (state ={}, action)=>{
+    switch(action.type){ 
+        case 'ADD_MOVIE':
+            return action.payload;
+        default: return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        movieDetails
+        movieDetails,
+        newMovie,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
