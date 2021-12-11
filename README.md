@@ -14,5 +14,9 @@ Your project description goes here. What problem did you solve? How did you solv
 
 ### Home/List Page
 
-- TODO: When a movie poster is clicked, a user should be brought to the `/details` view for that movie.
-- TODO: Have a way to get to the Add Movie Page
+- When a movie poster is clicked, a user should be brought to the `/details` view for that movie.
+[x] Create object in dispatch with individual movie details
+[x] Create Movie Details Component
+[x] Add movie details to store
+[x] Display details at '/detail'
+[x] Add Back button to Movie List page
