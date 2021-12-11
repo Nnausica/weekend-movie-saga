@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import { Link } from 'react-router-dom'; 
-import MovieDetails from '../MovieDetails/MovieDetails'
+
 
 function MovieList() {
 
@@ -12,6 +12,7 @@ function MovieList() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
+        // dispatch({ type: 'SET_GENRES' });
     }, []);
 
     return (

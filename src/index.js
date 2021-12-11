@@ -12,11 +12,14 @@ import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create the rootSaga generator function
+// watchers- smae as the index
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    yield takeEvery('SET_GENRES', getAllGenres);
+    yield takeEvery('FETCH_GENRES', getAllGenres);
 }
 
+
+//generator functions 'TAGS_TAGS' same as the reducer
 function* fetchAllMovies() {
     // get all movies from the DB
     try {
@@ -30,10 +33,11 @@ function* fetchAllMovies() {
         
 }
 
-function getAllGenres(){
+function* getAllGenres(action){
     //get all genres from the DB
+    console.log('action.payload:', action.payload)
     try{
-        const genres= yield axios.get('/api/genres');
+        const genres= yield axios.get(`/api/genre/${action.payload}`);
         console.log('get all genres:', genres.data);
         yield put({type: 'SET_GENRES', payload:genres.data});
     } catch {
@@ -58,6 +62,7 @@ const movies = (state = [], action) => {
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
+            console.log('in genres:', action.payload);
             return action.payload;
         default:
             return state;

@@ -1,3 +1,4 @@
+import { createGenerateClassName } from '@material-ui/styles';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { Link } from 'react-router-dom'; 
@@ -9,19 +10,34 @@ function MovieDetails( props ){
     const genres = useSelector( store => store.genres);
     // const [name, setName] = useState( null );
 
+    useEffect(() => {
+        dispatch({ type: 'FETCH_GENRES', payload:movieDetails.id});
+    }, []);
+
+
     const dispatch = useDispatch();
 
     return(
         <div>
-            <h1>{genres.name}</h1>
-            <h1>{genres.id}</h1>
+            <h1>Movie Details</h1>
+                
+                {genres.map(genres => {
 
-            <h1>{movieDetails.id}</h1>
-            <h1>{movieDetails.title}</h1>
-            <img src={movieDetails.poster}/>
-            <h1>{movieDetails.description}</h1>
+                    return(
+                    <div>
+                        <h3>{genres.name}</h3>
+                    </div>
+                    )})}
+
+            
+                <h3>{movieDetails.id}</h3>
+                <h3>{movieDetails.title}</h3>
+                <img src={movieDetails.poster}/>
+                <h3>{movieDetails.description}</h3>
+            
 
             <Link to="/"><button>Back to Movie List</button></Link>
+           
         </div>
         
     )
