@@ -18,6 +18,7 @@ function MovieList() {
     return (
         <main>
             <h1>MovieList</h1>
+            <Link to="/addmovie"><button>Add a Movie</button></Link>
             <section className="movies">
                 {movies.map(movie => {
                     //map through movies and then create a dispatch for each movie as an object

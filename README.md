@@ -29,3 +29,11 @@ Your project description goes here. What problem did you solve? How did you solv
 [x] add useEffect- dispatch to movie details to get genres
 [x] watcher dispatch type matches useEffect in MovieDetails, call function
 [x] function sets genres in store
+
+### Add Movies
+[x] create add movie component
+[x] add inputs and dropdown options
+    --- downdown genre values need to be genre id
+[x] add watcher that calls addNewMovie function
+[x] post route, then recall 'ADD_MOVIE' tag to refresh movies on page
+[x] link 'save' button to home page

@@ -15,7 +15,7 @@ function AddMovie( props ){
     const[titleChange, setNewTitle]= useState('');
     const[posterChange, setNewPoster]= useState('');
     const[descriptionChange, setNewDescription]= useState('');
-    const[genreChange, setNewGenre]= useState('Adventure');
+    const[genreChange, setNewGenre]= useState(1);
 
 
 
